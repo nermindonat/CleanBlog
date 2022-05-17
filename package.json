@@ -1,0 +1,32 @@
+{
+  "name": "cleanblog",
+  "version": "1.0.0",
+  "description": "\"# CleanBlog\"",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nermindonat/CleanBlog.git"
+  },
+  "keywords": [
+    "cleab",
+    "blog",
+    "site"
+  ],
+  "author": "Nermin Donat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nermindonat/CleanBlog/issues"
+  },
+  "homepage": "https://github.com/nermindonat/CleanBlog#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.16",
+    "prettier": "2.6.2"
+  },
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
