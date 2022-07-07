@@ -1,37 +1,54 @@
-const express = require('express')
-const ejs = require('ejs')
-const path = require('path')
+const express = require('express');
+const mongoose = require('mongoose');
+
+const ejs = require('ejs');
+const path = require('path');
+const Post = require('./models/Post');
 
 const app = express();
 
-// Template Engine 
-app.set("view engine", "ejs")
+// Connect DB
+mongoose.connect('mongodb://localhost/cleanblog-test-db', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
+// Template Engine
+app.set('view engine', 'ejs');
 
 // Middleware
-app.use(express.static('public'))
-
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Routers
-app.get('/', (req, res) => {
-    res.render('index')
-})
+app.get('/', async (req, res) => {
+  const posts = await Post.find({}); // verileri projemizde anasayfada sıralamak için.
+  res.render('index', {
+    posts
+  });
+});
 
 app.get('/about', (req, res) => {
-    res.render('about')
-})
+  res.render('about');
+});
 
 app.get('/post', (req, res) => {
-    res.render('post')
-})
+  res.render('post');
+});
 
 app.get('/add_post', (req, res) => {
-    res.render('add_post')
-})
+  res.render('add_post');
+});
 
+app.post('/posts', async (req, res) => {
+  console.log("Gelen post isteği body si", req.body)
+  await Post.create(req.body)  // body bilgisini Post modeli sayesinde veritabanında dökümana dönüştüyoruz.
+    res.redirect('/');  // Anasayfaya yönlendiriyor.
+  });
 
 const port = 3000;
 
 app.listen(port, () => {
-    console.log(`Sunucu ${port} portunda başlatıldı`);
-})
+  console.log(`Sunucu ${port} portunda başlatıldı`);
+});
