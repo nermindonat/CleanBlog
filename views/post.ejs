@@ -11,11 +11,15 @@
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="col-lg-8 col-md-10 mx-auto" style="display: flex; flex-direction: row; align-items: center; ">
           <div class="post-heading">
             <h1><%= post.title %></h1>
             <h2 class="subheading"><%= post.detail %></h2>
             <span class="meta"><%= post.dateCreated %></span>
+          </div>
+          <div style="display: flex; justify-content: center; align-items: center;  margin-left: 50px;">
+            <a href="/posts/edit/<%= post._id %>" style="background-color: white; margin-right: 20px; border-radius: 10px; width: 60%; height: 70px; text-align: center; padding: 10px; text-transform: uppercase;">Update Post</a>
+            <a href="/posts/<%= post._id %>?_method=DELETE" onclick="return confirm('ARE YOU SURE?')" style="background-color: white; margin-right: 20px; border-radius: 10px; width: 60%; height: 70px; text-align: center; padding: 10px; text-transform: uppercase;">Delete Post</a>
           </div>
         </div>
       </div>
