@@ -10,7 +10,7 @@ exports.getAddPostPage = (req, res) => {
 };
 
 exports.getEditPostPage  = async (req, res) => {
-  const post = await Post.findOne({_id: req.params.id});
+  const post = await Post.findOne({ _id: req.params.id});
   res.render('edit', {
     post,
   })

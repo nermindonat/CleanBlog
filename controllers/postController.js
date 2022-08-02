@@ -22,6 +22,8 @@ exports.createPost = async (req, res) => {
 };
 
 exports.updatePost = async (req, res) => {
+  console.log(req.params.id);
+  console.log(req.body);
   const post = await Post.findOne({ _id: req.params.id });
   post.title = req.body.title;
   post.detail = req.body.detail;
